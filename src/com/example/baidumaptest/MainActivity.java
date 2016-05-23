@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
 
 	private BMapManager manager;
 	private MapView mapView;
-	private LocationManager locationManager;
+	private LocationManager locationManager1;
 	private String provider;
 	
 	@Override
@@ -32,8 +32,8 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		mapView = (MapView)findViewById(R.id.map_view);
 		mapView.setBuiltInZoomControls(true);
-		locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-		List<String> providerList = locationManager.getProviders(true);
+		locationManager1 = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+		List<String> providerList = locationManager1.getProviders(true);
 		if(providerList.contains(LocationManager.GPS_PROVIDER)){
 			provider = LocationManager.GPS_PROVIDER;
 		}else if(providerList.contains(LocationManager.NETWORK_PROVIDER)){
@@ -42,7 +42,7 @@ public class MainActivity extends Activity {
 			Toast.makeText(MainActivity.this, "No location provider to use", Toast.LENGTH_SHORT).show();
 			return;
 		}
-		Location location = locationManager.getLastKnownLocation(provider);
+		Location location = locationManager1.getLastKnownLocation(provider);
 		if(location != null){
 			navigateTo(location);
 		}
